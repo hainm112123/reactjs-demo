@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 
 import './App.css';
 import './components/TodoItem'
@@ -19,6 +19,12 @@ class App extends Component {
     // this.onItemClicked = this.onItemClicked.bind(this);
     this.onEnterPressed = this.onEnterPressed.bind(this);
     this.onCompleteAllClicked = this.onCompleteAllClicked.bind(this);
+
+    this.inputElement = React.createRef();
+  }
+
+  componentDidMount() {
+    this.inputElement.current.focus();
   }
 
   onItemClicked(item) {
@@ -67,7 +73,7 @@ class App extends Component {
       <div className="App">
         <div className="Header">
           <img className="complete-all" src={tickImg} alt="" onClick={this.onCompleteAllClicked}></img>
-          <input className="add-item" type='text' placeholder='Add new item' onKeyUp={this.onEnterPressed}></input>
+          <input className="add-item" type='text' ref={this.inputElement} placeholder='Add new item' onKeyUp={this.onEnterPressed}></input>
         </div>
         {
           todoItems.length === 0 ? 'Nothing' : todoItems.map((item, index) => 
