@@ -9,7 +9,7 @@ class App extends Component {
     super();
     this.state = {
       todoItems : [
-        {title: "Anime", isComplete: true},
+        {title: "Anime", isComplete: false},
         {title: "Manga", isComplete: true},
         {title: "Game", isComplete: false},
       ],
@@ -17,6 +17,7 @@ class App extends Component {
 
     // this.onItemClicked = this.onItemClicked.bind(this);
     this.onEnterPressed = this.onEnterPressed.bind(this);
+    this.onCompleteAllClicked = this.onCompleteAllClicked.bind(this);
   }
 
   onItemClicked(item) {
@@ -49,12 +50,22 @@ class App extends Component {
     })
   }
 
+  onCompleteAllClicked() {
+    let todoItems = this.state.todoItems;
+    for (let todoItem of todoItems) {
+      todoItem.isComplete = true;
+    }
+    this.setState({
+      todoItems: todoItems,
+    })
+  }
+
   render() {
     const todoItems = this.state.todoItems;
     return (
       <div className="App">
         <div className="Header">
-          <img className="complete-all" src={tickImg} alt=""></img>
+          <img className="complete-all" src={tickImg} alt="" onClick={this.onCompleteAllClicked}></img>
           <input className="add-item" type='text' placeholder='Add new item' onKeyUp={this.onEnterPressed}></input>
         </div>
         {
