@@ -1,5 +1,26 @@
+.Header {
+  display: flex;
+}
+.App .Header .complete-all {
+  height: 24px;
+  width: 24px;
+}
+
+.App .Header .add-item {
+  font-size: 14px;
+  margin-left: 12px;
+  border: none;
+}
+
+.App .Header .add-item:focus {
+  border: none;
+  outline: none;
+}
+
 .App {
-  text-align: center;
+  margin: auto;
+  margin-top: 100px;
+  width: 300px;
 }
 
 .App-logo {

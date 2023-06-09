@@ -1,5 +1,17 @@
-.TodoItem--Complete {
+.TodoItem {
+  display: flex;
+  align-items: center;
+}
+
+.TodoItem > p {
+  margin-left: 20px;
+}
+.TodoItem--Complete > p {
   text-decoration: line-through;
   opacity: 0.3;
 }
 
+.TodoItem > img {
+  width: 24px;
+  height: 24px;
+}

@@ -1,8 +1,8 @@
-import logo from './logo.svg';
 import './App.css';
 import './components/TodoItem'
 import TodoItem from './components/TodoItem';
 import { Component } from 'react';
+import tickImg from './img/tick.png'
 
 class App extends Component {
   constructor() {
@@ -16,6 +16,7 @@ class App extends Component {
     }
 
     // this.onItemClicked = this.onItemClicked.bind(this);
+    this.onEnterPressed = this.onEnterPressed.bind(this);
   }
 
   onItemClicked(item) {
@@ -36,32 +37,34 @@ class App extends Component {
     }
   }
 
+  onEnterPressed(event) {
+    if (event.keyCode !== 13) return;
+    let text = event.target.value;
+    event.target.value="";
+    this.setState({
+      todoItems: [
+        {title: text, isComplete: false},
+        ...this.state.todoItems
+      ]
+    })
+  }
+
   render() {
     const todoItems = this.state.todoItems;
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          {
-            todoItems.length === 0 ? 'Nothing' : todoItems.map((item, index) => 
-            <TodoItem 
-              key={index} 
-              item={item} 
-              onClick={this.onItemClicked(item)}>
-            </TodoItem>)
-          }       
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <div className="Header">
+          <img className="complete-all" src={tickImg} alt=""></img>
+          <input className="add-item" type='text' placeholder='Add new item' onKeyUp={this.onEnterPressed}></input>
+        </div>
+        {
+          todoItems.length === 0 ? 'Nothing' : todoItems.map((item, index) => 
+          <TodoItem 
+            key={index} 
+            item={item} 
+            onClick={this.onItemClicked(item)}>
+          </TodoItem>)
+        }       
       </div>
     );
   }

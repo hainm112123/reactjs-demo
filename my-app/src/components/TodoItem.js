@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import './TodoItem.css'
+import checkMark from '../img/check.png'
+import checkCompleteMark from '../img/checkComplete.png'
 
 class TodoItem extends Component {
   render() {
@@ -9,7 +11,8 @@ class TodoItem extends Component {
     if (item.isComplete) className += " TodoItem--Complete"
 
     return (
-      <div className={className} data-item-index={this.props.index} onClick={this.props.onClick}>
+      <div className={className}>
+        <img src={item.isComplete ? checkCompleteMark : checkMark} alt="" onClick={this.props.onClick}/>
         <p>{item.title}</p>
       </div>
     );
