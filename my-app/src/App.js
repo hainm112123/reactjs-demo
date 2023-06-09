@@ -1,7 +1,8 @@
+import { Component } from 'react';
+
 import './App.css';
 import './components/TodoItem'
 import TodoItem from './components/TodoItem';
-import { Component } from 'react';
 import tickImg from './img/tick.png'
 
 class App extends Component {
@@ -11,7 +12,7 @@ class App extends Component {
       todoItems : [
         {title: "Anime", isComplete: false},
         {title: "Manga", isComplete: true},
-        {title: "Game", isComplete: false},
+        {title: "Gaming", isComplete: false},
       ],
     }
 
